@@ -1,0 +1,19 @@
+{
+  "name": "discord-bot-test",
+  "version": "1.0.0",
+  "description": "practice to make discord bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yoojinko/practise-discord-bot.git"
+  },
+  "author": "yoojinko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yoojinko/practise-discord-bot/issues"
+  },
+  "homepage": "https://github.com/yoojinko/practise-discord-bot#readme"
+}
