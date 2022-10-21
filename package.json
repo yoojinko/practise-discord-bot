@@ -4,7 +4,8 @@
   "description": "practice to make discord bot",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node index.js && tsc"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/yoojinko/practise-discord-bot/issues"
   },
-  "homepage": "https://github.com/yoojinko/practise-discord-bot#readme"
+  "homepage": "https://github.com/yoojinko/practise-discord-bot#readme",
+  "dependencies": {
+    "discord.js": "^14.6.0",
+    "dotenv": "^16.0.3"
+  },
+  "devDependencies": {
+    "tsc": "^2.0.4",
+    "typescript": "^4.8.4"
+  }
 }
