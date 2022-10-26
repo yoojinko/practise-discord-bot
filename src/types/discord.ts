@@ -11,9 +11,9 @@ export type IExecuteFunc =
 export interface IExecuteProps {
   interaction: CommandInteraction;
   client: Client;
-  commands: Collection<string, IDiscordCommand>;
-  subcommands: Collection<string, IDiscordSubCommand>;
-  commandNames: Array<string>;
+  commands: Collection<String, IDiscordCommand>;
+  subcommands: Collection<String, IDiscordSubCommand>;
+  commandNames: Array<String>;
 }
 
 export interface IDiscordCommand {

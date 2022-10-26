@@ -1,9 +1,9 @@
 import {
     Client,
-     Partials,
-      GatewayIntentBits, 
       Collection,
-      Message
+      Message,
+      CommandInteraction,
+      Intents
 } from "discord.js";
 import * as commandHandlers from "./commands";
 import * as eventHandlers from "./events";
@@ -21,12 +21,11 @@ const discordSubCommands = new Collection<String, IDiscordSubCommand>();
 function initializeBot() {
     const client = new Client({
         intents: [
-            GatewayIntentBits.Guilds,
-            GatewayIntentBits.GuildMessages,
-            GatewayIntentBits.GuildMessageReactions,
-            GatewayIntentBits.MessageContent
+            Intents.FLAGS.GUILDS,
+            Intents.FLAGS.GUILD_MESSAGES,
+            Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
         ],
-        partials: [Partials.Channel, Partials.Message, Partials.Reaction],
+        partials: ['CHANNEL', 'MESSAGE', 'REACTION'],
       });
 
       for(const command of Object.values(commandHandlers)) {
@@ -43,6 +42,7 @@ function initializeBot() {
 
       const readyEventHandler = eventHandlers.ready();
       const messageCreateHandler = eventHandlers.messageCreate();
+      const interactionCreateHandler = eventHandlers.interactionCreate();
 
       client.once(
         readyEventHandler.name, 
@@ -54,24 +54,18 @@ function initializeBot() {
         (message: Message) => messageCreateHandler.execute(message)
       )
 
+      client.on(
+        interactionCreateHandler.name, 
+        (interaction:CommandInteraction) => interactionCreateHandler.execute({
+          interaction,
+          client,
+          commands : discordCommands,
+          subcommands: discordSubCommands,
+          commandNames
+        })
+      )
+
       client.login(BOT_TOKEN);
 }
 
 initializeBot();
-// client.once('ready', () => {
-//     console.log("Ready!");
-// });
-
-// client.on('messageCreate', (message,) => {
-//     console.log("I'm in on messageCre");
-//     console.log(message);
-//     console.log(message.content);
-// })
-
-// client.on('messageUpdate', message => {
-//     console.log("I'm in on messageUp");
-//     console.log(message);
-//     console.log(message.content);
-// })
-
-// client.login(BOT_TOKEN);
