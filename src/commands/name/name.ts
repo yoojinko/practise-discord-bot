@@ -8,8 +8,12 @@ const myNameCommand = {
             subcommand
                 .setName('name')
                 .setDescription('What is your name?')
+                .addStringOption(option =>
+                    option.setName('input')
+                        .setDescription('the input'))
         ) ,
     execute: async (interaction:CommandInteraction) => {
+        console.log("in createMessage");
         console.log(interaction);
     },
 };
